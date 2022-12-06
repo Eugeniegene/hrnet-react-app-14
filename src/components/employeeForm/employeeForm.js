@@ -115,7 +115,7 @@ const EmployeeForm = () => {
                 <button type="submit" className="submitForm" onSubmit={sendForm}> Save </button>
             </form>
             {openModal && (
-                <FormModal closeModal={() => setOpenModal(false)}></FormModal>
+                <FormModal closeModal={() => setOpenModal(false)} />
             )}
         </div>
     )
