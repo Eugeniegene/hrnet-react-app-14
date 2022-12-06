@@ -1,0 +1,29 @@
+.homepage{
+    margin-top: 10px;
+    margin: 0 auto;
+}
+
+.employeeLinked{
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.employeeLinked a {
+    text-decoration: none;
+    color: rgb(114, 71, 31);
+    font-size: 22px;
+    transition: 0.8s;
+}
+
+.employeeLinked a:hover{
+    font-weight: 600;
+    color: white;
+}
+
+.homepage h2 {
+    color: rgb(114, 71, 31);
+    margin-bottom: 0px;
+    font-weight: 500;
+    font-size: 22px;
+    text-align: center;
+}

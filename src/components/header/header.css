@@ -1,0 +1,13 @@
+header {
+    border-bottom: 1px solid #654a4e;
+    display: flex;
+    justify-content: center;
+    font-family: Montserrat;
+    width: 85%;
+    margin: 0 auto;
+}
+
+header h1 {
+    color: #654a4e;
+    font-size: 45px;
+}

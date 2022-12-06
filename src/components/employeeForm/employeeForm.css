@@ -1,0 +1,79 @@
+.userForm {
+    display: flex;
+    flex-direction: column;
+    background: rgb(255, 255, 255);
+    margin: 0 auto;
+    width: 550px;
+    border-radius: 5px;
+    box-shadow: 2px 5px 27px 5px rgba(0,0,0,0.35);
+    padding-left:45px;
+    padding-right:45px;
+    font-family: Montserrat;
+}
+
+.formLabel {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+
+  }
+
+.formLabel h3 {
+    margin-bottom: 5px;
+    color: #654a4e;
+    font-weight: 500;
+}
+
+.submitForm {
+    margin: 18px auto;
+    width: auto;
+    border: none;
+    background:#654a4e;
+    padding : 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 1s;
+    font-family: Montserrat;
+    font-weight: bold;
+    color: white;
+    border: 2px solid rgba(0, 0, 0, 0.082);
+}
+
+.submitForm:hover{
+    box-shadow: -2px 1px 21px 9px rgba(0, 0, 0, 0.082);
+    background:#a0757c;
+}
+
+.formLabel .formInput {
+    padding: 10px;
+    border: none;
+    background-color: #b18087;
+    border-radius: 5px;
+    font-family: Montserrat;
+    font-size: 15px;
+    color: white;
+}
+.formLabel .formInput::placeholder{
+    color: white;
+    opacity: 50%;
+}
+
+.formLabel .formSelect {
+    padding: 10px;
+    border: none;
+    background-color: #b18087;
+    border-radius: 5px;
+    font-family: Montserrat;
+    font-size: 15px;
+    color: white;
+}
+
+.formLabel .departmentSelect {
+    padding: 10px;
+    border: none;
+    background-color: #b18087;
+    border-radius: 5px;
+    font-family: Montserrat;
+    font-size: 15px;
+    color: white;
+}

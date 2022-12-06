@@ -1,0 +1,8 @@
+footer {
+    margin-top: 50px;
+    border-top: 2px solid #ccc;
+    display: flex;
+    justify-content: center;
+    padding: 32px 0 24px;
+    font-family: Montserrat;
+}

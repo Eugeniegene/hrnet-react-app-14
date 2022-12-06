@@ -1,0 +1,31 @@
+.dataGridContainer{
+    background-color: white;
+    margin-top:40px;
+    margin-bottom: 25px;
+    padding: 25px;
+    border-radius: 5px;
+    box-shadow: 2px 5px 27px 5px rgb(0 0 0 / 35%);
+    padding-left: 45px;
+    padding-right: 45px;
+    font-family: Montserrat;
+}
+
+.dataGridContainer h2{
+    color: rgb(114, 71, 31);
+    margin-bottom: 0px;
+    font-weight: 500;
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.MuiDataGrid-columnHeaders {
+    background-color: #b18087;
+    font-family: Montserrat;
+    color: white;
+    text-align: center;
+}
+
+.MuiBox-root {
+    text-align: left;
+}

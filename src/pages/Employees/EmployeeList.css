@@ -1,0 +1,20 @@
+.centralEmployeeList{
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 25px;
+    margin-top: 25px;
+    text-align: center;
+}
+
+.centralEmployeeList a{
+    text-decoration: none;
+    color: rgb(114, 71, 31);
+    font-size: 22px;
+    transition: 0.8s;
+    text-align: center;
+}
+
+.centralEmployeeList a:hover{
+    font-weight: 600;
+    color: white;
+}
