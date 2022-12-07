@@ -1,13 +1,12 @@
 import * as React from 'react'
-import { useSelector } from 'react-redux'
+//import { useSelector } from 'react-redux'
 import Box from '@mui/material/Box'
-import moment from 'moment'
 import IconButton from '@mui/material/IconButton'
 import ClearIcon from '@mui/icons-material/Clear'
 import SearchIcon from '@mui/icons-material/Search'
 import TextField from '@mui/material/TextField'
 import { DataGrid } from '@mui/x-data-grid'
-import {dataFormSelector} from '../../redux/user/userSelector.js'
+//import {dataFormSelector} from '../../redux/user/userSelector.js'
 
 import './employeeDataTable.css'
 
@@ -53,23 +52,30 @@ function QuickSearchToolbar(props) {
  */
 
 function EmployeeList() {
-  const user = useSelector(dataFormSelector)
-  const rows = []
-  const nbRows = rows.length
 
-  for (let i = 0; i < nbRows; i += 1) {
-    rows.push({
-      id: i + 1,
-      col1: user.rows[i].firstName,
-      col2: user.rows[i].lastName,
-      col3: moment(user.rows[i].birth).format('DD/MM/YYYY'),
-      col4: moment(user.rows[i].startDate).format('DD/MM/YYYY'),
-      col5: user.rows[i].street,
-      col6: user.rows[i].city,
-      col7: user.rows[i].state,
-      col8: user.rows[i].zipCode,
-      col9: user.rows[i].department
-    })
+  let userAddon = localStorage.getItem("employees")
+  let user = JSON.parse(userAddon)
+
+  const rows = []
+  console.log(user + " " + "somebody")
+
+  let data
+  if (user !== null) {
+  for (let i = 0, end = user.length; i < end; i++) {
+      data = user[i]
+      rows.push({
+        id: i,
+        col1: data.firstName,
+        col2: data.lastName,
+        col3: data.dateOfBirth,
+        col4: data.startDate,
+        col5: data.street,
+        col6: data.city,
+        col7: data.state,
+        col8: data.zipCode,
+        col9: data.department
+      })
+    }
   }
 
   const columns = [
@@ -84,37 +90,37 @@ function EmployeeList() {
     { field: 'col9', headerName: 'Department', flex: 1 }
   ]
 
-  const [searchText, setSearchText] = React.useState('')
+  const [searchData, setSearchData] = React.useState('')
 
-  const [rowsNew, setRowsNew] = React.useState(rows)
+  const [newRow, setNewRow] = React.useState(rows)
 
   const requestSearch = (searchValue) => {
-    setSearchText(searchValue)
+    setSearchData(searchValue)
     const searchRegex = new RegExp(escapeRegExp(searchValue), 'i')
     const filteredRows = rows.filter((row) => {
       return Object.keys(row).some((field) => {
         return searchRegex.test(row[field].toString())
       })
     })
-    setRowsNew(filteredRows)
+    setNewRow(filteredRows)
   }
 
   React.useEffect(() => {
-    setRowsNew(rowsNew)
-  }, [rowsNew])
+    setNewRow(newRow)
+  }, [newRow])
 
   return (
     <div id="employee-div" className="dataGridContainer">
       <h2>Current Employees</h2>
       <Box sx={{ height: 400, width: '100%'}}>
         <DataGrid
-          rows={rowsNew}
+          rows={newRow}
           columns={columns}
           components={{ Toolbar: QuickSearchToolbar }}
           className="dataGridTable"
           componentsProps={{
             toolbar: {
-              value: searchText,
+              value: searchData,
               onChange: (event) => requestSearch(event.target.value),
               clearSearch: () => requestSearch('')
             }

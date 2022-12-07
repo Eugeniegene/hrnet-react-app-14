@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import FormModal from '@eugeniegene/hrnet-modal-addon'
+import FormModal from 'eugeniegene-hrnet-modal-addon/dist/formModal'
 
 import states from '../../mocked-Data/allStates'
 
@@ -14,8 +14,8 @@ const EmployeeForm = () => {
     const [openModal, setOpenModal] = useState(false)
     
     const [userData, setUserData] = useState({
-        firstname: '',
-        lastname: '',
+        firstName: '',
+        lastName: '',
         startDate: '',
         department: '',
         dateOfBirth: '',
@@ -27,17 +27,18 @@ const EmployeeForm = () => {
 
     const sendForm = (e) => {
         e.preventDefault()
+        setOpenModal(true)
         store.dispatch(
             dataForm({
                 firstName: userData.firstName,
                 lastName: userData.lastName,
-                birth: userData.birth,
                 startDate: userData.startDate,
+                department: userData.department,
+                birth: userData.dateOfBirth,
                 street: userData.street,
                 city: userData.city,
                 state: userData.state,
-                zip: userData.zip,
-                department: userData.department
+                zip: userData.zipCode,
             })
         )
         store.dispatch(employeeCreated(true))
@@ -54,7 +55,10 @@ const EmployeeForm = () => {
 
     return (
         <div>
-            <form className="userForm" >
+            {openModal && (
+                <FormModal closeModal={() => setOpenModal(false)} />
+            )}
+            <form className="userForm" onSubmit={sendForm} >
                 <h2> Create Employee </h2>
                 <div className="GeneralForm">
                 <label className="formLabel">
@@ -112,11 +116,8 @@ const EmployeeForm = () => {
                         <option value="Legal">Legal</option>
                     </select>
                 </label>
-                <button type="submit" className="submitForm" onSubmit={sendForm}> Save </button>
+                <button type="submit" className="submitForm" > Save </button>
             </form>
-            {openModal && (
-                <FormModal closeModal={() => setOpenModal(false)} />
-            )}
         </div>
     )
 }
