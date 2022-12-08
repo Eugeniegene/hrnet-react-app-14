@@ -1,10 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { dataForm, employeeCreated} from './user/userFeatures.js'
+import setNewEmployee from './user/userFeatures.js'
 
 const store = configureStore({
   reducer: {
-    employeeCreated: dataForm,
-    dataForm: employeeCreated
+    employee: setNewEmployee
   }
 })
 

@@ -1,19 +1,32 @@
 import React from 'react'
 import { useState } from 'react'
 import FormModal from 'eugeniegene-hrnet-modal-addon/dist/formModal'
-
+import { useSelector } from 'react-redux'
 import states from '../../mocked-Data/allStates'
 
 import store from '../../redux/store.js'
-import {employeeCreated, dataForm} from '../../redux/user/userFeatures.js'
+import {create} from '../../redux/user/userFeatures.js'
 
 import "./employeeForm.css"
+
+
+/**
+ * creates the employee form
+ * every area is required.
+ * Each new employee will have a new id assigned to be displayed in the data table. 
+ * The modal (installed via npm) will only show up if the user was succesfully created. 
+ */
 
 const EmployeeForm = () => {
 
     const [openModal, setOpenModal] = useState(false)
-    
+    const message = "Employee successfully created !"
+
+    const user = useSelector((state)=>state.employee.rows)
+    let idCount = user.length+1
+
     const [userData, setUserData] = useState({
+        id:'',
         firstName: '',
         lastName: '',
         startDate: '',
@@ -25,11 +38,12 @@ const EmployeeForm = () => {
         zipCode: '',
       })
 
-    const sendForm = (e) => {
+    const SendForm = (e) => {
         e.preventDefault()
         setOpenModal(true)
         store.dispatch(
-            dataForm({
+            create({
+                id: idCount,
                 firstName: userData.firstName,
                 lastName: userData.lastName,
                 startDate: userData.startDate,
@@ -40,12 +54,12 @@ const EmployeeForm = () => {
                 state: userData.state,
                 zip: userData.zipCode,
             })
-        )
-        store.dispatch(employeeCreated(true))
+        )     
       }
 
     const formDataInput = (e) => {
-        e.persist()
+        e.preventDefault()
+
         const { name, value } = e.target
         setUserData((state) => ({
           ...state,
@@ -56,14 +70,14 @@ const EmployeeForm = () => {
     return (
         <div>
             {openModal && (
-                <FormModal closeModal={() => setOpenModal(false)} />
+                <FormModal message={message} closeModal={() => setOpenModal(false)} />
             )}
-            <form className="userForm" onSubmit={sendForm} >
+            <form className="userForm" action="#" onSubmit={SendForm} >
                 <h2> Create Employee </h2>
                 <div className="GeneralForm">
                 <label className="formLabel">
                     <h3 className="dataLabel"> First Name  </h3>
-                    <input className="formInput" name="firstName"type="text" onChange={formDataInput} placeholder="John" required/>
+                    <input className="formInput" name="firstName" type="text" onChange={formDataInput} placeholder="John" required/>
                 </label>
                 <label className="formLabel">
                     <h3 className="dataLabel"> Last Name </h3>
@@ -107,7 +121,7 @@ const EmployeeForm = () => {
                 </div>
                 <label className="formLabel">
                     <h3 className="labelTextDepartment"> Department </h3>
-                    <select className="departmentSelect" name="department" required>
+                    <select className="departmentSelect" name="department" onChange={formDataInput} required>
                         <option value=""></option>
                         <option value="Sales">Sales</option>
                         <option value="Marketing">Marketing</option>

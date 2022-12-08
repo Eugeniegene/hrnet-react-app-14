@@ -1,12 +1,11 @@
 import * as React from 'react'
-//import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
 import ClearIcon from '@mui/icons-material/Clear'
 import SearchIcon from '@mui/icons-material/Search'
 import TextField from '@mui/material/TextField'
 import { DataGrid } from '@mui/x-data-grid'
-//import {dataFormSelector} from '../../redux/user/userSelector.js'
 
 import './employeeDataTable.css'
 
@@ -52,52 +51,28 @@ function QuickSearchToolbar(props) {
  */
 
 function EmployeeList() {
-
-  let userAddon = localStorage.getItem("employees")
-  let user = JSON.parse(userAddon)
-
-  const rows = []
-  console.log(user + " " + "somebody")
-
-  let data
-  if (user !== null) {
-  for (let i = 0, end = user.length; i < end; i++) {
-      data = user[i]
-      rows.push({
-        id: i,
-        col1: data.firstName,
-        col2: data.lastName,
-        col3: data.dateOfBirth,
-        col4: data.startDate,
-        col5: data.street,
-        col6: data.city,
-        col7: data.state,
-        col8: data.zipCode,
-        col9: data.department
-      })
-    }
-  }
+  const user = useSelector((state)=>state.employee.rows)
 
   const columns = [
-    { field: 'col1', headerName: 'First Name', flex: 1 },
-    { field: 'col2', headerName: 'Last Name', flex: 1 },
-    { field: 'col3', headerName: 'Birth', flex: 1 },
-    { field: 'col4', headerName: 'Start Date', flex: 1 },
-    { field: 'col5', headerName: 'Street', flex: 1 },
-    { field: 'col6', headerName: 'City', flex: 1 },
-    { field: 'col7', headerName: 'State', flex: 1 },
-    { field: 'col8', headerName: 'Zip code', flex: 1 },
-    { field: 'col9', headerName: 'Department', flex: 1 }
+    { field: 'firstName', headerName: 'First Name', flex: 1 },
+    { field: 'lastName', headerName: 'Last Name', flex: 1 },
+    { field: 'birth', headerName: 'Birth', flex: 1 },
+    { field: 'startDate', headerName: 'Start Date', flex: 1 },
+    { field: 'street', headerName: 'Street', flex: 1 },
+    { field: 'city', headerName: 'City', flex: 1 },
+    { field: 'state', headerName: 'State', flex: 1 },
+    { field: 'zip', headerName: 'Zip code', flex: 1 },
+    { field: 'department', headerName: 'Department', flex: 1 }
   ]
 
   const [searchData, setSearchData] = React.useState('')
 
-  const [newRow, setNewRow] = React.useState(rows)
+  const [newRow, setNewRow] = React.useState(user)
 
   const requestSearch = (searchValue) => {
     setSearchData(searchValue)
     const searchRegex = new RegExp(escapeRegExp(searchValue), 'i')
-    const filteredRows = rows.filter((row) => {
+    const filteredRows = user.filter((row) => {
       return Object.keys(row).some((field) => {
         return searchRegex.test(row[field].toString())
       })
@@ -114,7 +89,7 @@ function EmployeeList() {
       <h2>Current Employees</h2>
       <Box sx={{ height: 400, width: '100%'}}>
         <DataGrid
-          rows={newRow}
+          rows={user}
           columns={columns}
           components={{ Toolbar: QuickSearchToolbar }}
           className="dataGridTable"
