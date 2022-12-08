@@ -4,8 +4,8 @@
 
 ## Environments
 
-https://github.com/Eugeniegene/hrnet-react-modal-addon
-https://www.npmjs.com/package/eugeniegene-hrnet-modal-addon
+- https://github.com/Eugeniegene/hrnet-react-modal-addon
+- https://www.npmjs.com/package/eugeniegene-hrnet-modal-addon
 
 ### Technologies 
 
