@@ -9,11 +9,11 @@ https://www.npmjs.com/package/eugeniegene-hrnet-modal-addon
 
 ### Technologies 
 
-- [![react-v_18.2.0](https://img.shields.io/badge/NodeJs-v_16.14.2-61dafb)](https://fr.reactjs.org/)
-- [![@mui/icons-material-v_5.10.16](https://img.shields.io/badge/NodeJs-v_16.14.2-blue)](https://mui.com/material-ui/material-icons/)
-- [![@mui/material-v_5.10.16](https://img.shields.io/badge/NodeJs-v_16.14.2-blue)](https://mui.com/x/react-data-grid/)
-- [![@mui/x-data-grid](https://img.shields.io/badge/NodeJs-v_16.14.2-blue)](https://mui.com/x/react-data-grid/)
-- [![redux-v_4.2.0](https://img.shields.io/badge/NodeJs-v_16.14.2-purple)](https://react-redux.js.org/)
+- [![react-v_18.2.0](https://img.shields.io/badge/react-v_18.2.0-61dafb)](https://fr.reactjs.org/)
+- [![@mui/icons-material-v_5.10.16](https://img.shields.io/badge/@mui/icons-material-v_5.10.16-blue)](https://mui.com/material-ui/material-icons/)
+- [![@mui/material-v_5.10.16](https://img.shields.io/badge/@mui/material-v_5.10.16-blue)](https://mui.com/x/react-data-grid/)
+- [![@mui/x-data-grid](https://img.shields.io/badge/@mui/x-data-grid-blue)](https://mui.com/x/react-data-grid/)
+- [![redux-v_4.2.0](https://img.shields.io/badge/redux-v_4.2.0-purple)](https://react-redux.js.org/)
 
 ## Installing 
 
