@@ -27,7 +27,9 @@ function QuickSearchToolbar(props) {
         InputProps={{
           startAdornment: <SearchIcon fontSize="small" />,
           endAdornment: (
-            <IconButton title="Clear" aria-label="Clear" size="small" style={{ visibility: props.value ? 'visible' : 'hidden' }} onClick={props.clearSearch}>
+            <IconButton title="Clear" aria-label="Clear" size="small" 
+              style={{ visibility: props.value ? 'visible' : 'hidden' }} 
+              onClick={props.clearSearch}>
               <ClearIcon fontSize="small" />
             </IconButton>
           )
@@ -66,30 +68,29 @@ function EmployeeList() {
   ]
 
   const [searchData, setSearchData] = React.useState('')
-
   const [newRow, setNewRow] = React.useState(user)
 
-  const requestSearch = (searchValue) => {
-    setSearchData(searchValue)
-    const searchRegex = new RegExp(escapeRegExp(searchValue), 'i')
-    const filteredRows = user.filter((row) => {
+  const requestSearch = (searchUserValue) => {
+    setSearchData(searchUserValue)
+    const searchRegex = new RegExp(escapeRegExp(searchUserValue), 'i')
+    const filter = user.filter((row) => {
       return Object.keys(row).some((field) => {
         return searchRegex.test(row[field].toString())
       })
     })
-    setNewRow(filteredRows)
+    setNewRow(filter)
   }
 
   React.useEffect(() => {
-    setNewRow(newRow)
-  }, [newRow])
+    setNewRow(user)
+  }, [user])
 
   return (
     <div id="employee-div" className="dataGridContainer">
       <h2>Current Employees</h2>
       <Box sx={{ height: 400, width: '100%'}}>
         <DataGrid
-          rows={user}
+          rows={newRow}
           columns={columns}
           components={{ Toolbar: QuickSearchToolbar }}
           className="dataGridTable"
