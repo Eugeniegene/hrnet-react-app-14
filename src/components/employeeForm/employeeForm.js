@@ -59,7 +59,7 @@ const EmployeeForm = () => {
 
     const formDataInput = (e) => {
         e.preventDefault()
-
+        e.persist()
         const { name, value } = e.target
         setUserData((state) => ({
           ...state,
